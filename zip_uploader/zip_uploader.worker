@@ -1,0 +1,6 @@
+runtime "ruby"
+gem 'aws-sdk'
+gem 'rubyzip'
+exec 'zip_uploader.rb'
+name 'ZipUploader'
+remote
