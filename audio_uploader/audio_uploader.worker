@@ -1,0 +1,5 @@
+runtime "ruby"
+gem 'aws-sdk'
+exec 'audio_uploader.rb'
+name 'AudioUploader'
+remote
