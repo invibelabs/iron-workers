@@ -14,7 +14,7 @@ AudioUpload = Struct.new(:bucket_name, :bucket_dir, :filename, :audio_url) do
     puts "\nUploading the file to s3..."
     s3 = AWS::S3.new
     bucket = s3.buckets[bucket_name]
-    object = bucket.objects[bucket_dir + filename]
+    object = bucket.objects[bucket_dir + '/' + filename]
     if object.write(Pathname.new(filepath), content_type: 'audio/mpeg', acl: :public_read)
       puts "Uploading succesful."
       link = object.public_url
