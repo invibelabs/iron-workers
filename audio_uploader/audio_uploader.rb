@@ -1,11 +1,10 @@
 require "open-uri"
 require "aws-sdk"
 
-au_params = params['audio_uploader']
 
 AWS.config(
-  access_key_id: au_params['aws_access'],
-  secret_access_key: au_params['aws_secret'])
+  access_key_id: params['aws_access'],
+  secret_access_key: params['aws_secret'])
 
 
 AudioUpload = Struct.new(:bucket_name, :bucket_dir, :filename, :audio_url) do
@@ -37,13 +36,13 @@ AudioUpload = Struct.new(:bucket_name, :bucket_dir, :filename, :audio_url) do
   end
 end
 
-if au_params['upload_audio'] == true
+if params['upload_audio'] == true
   puts "Creating audio upload from params"
 
-  au_params['audio_files'].each do |audio_params|
+  params['audio_files'].each do |audio_params|
     au = AudioUpload.new(
-      au_params['aws_s3_bucket_name'],
-      au_params['bucket_dir'],
+      params['aws_s3_bucket_name'],
+      params['bucket_dir'],
       audio_params['filename'],
       audio_params['audio_url']
     )
