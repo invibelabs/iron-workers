@@ -1,0 +1,4 @@
+runtime "ruby"
+gem 'twilio-ruby'
+exec 'sms_sender.rb'
+name 'SmsSender'
