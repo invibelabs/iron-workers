@@ -33,6 +33,14 @@ DownloadFile = Struct.new(:filename, :file_url) do
 end
 
 ZipFile = Struct.new(:zip_name, :all_files) do
+  def perform
+    if all_files.length == 1 && file_is_zipped
+      rename
+    else
+      zip
+    end
+  end
+
   def zip
     puts "Zipping file #{zip_name}"
     Zip::File.open(zip_name, Zip::File::CREATE) do |zipfile|
@@ -41,6 +49,15 @@ ZipFile = Struct.new(:zip_name, :all_files) do
       end
     end
     puts "File zipped"
+  end
+
+  def rename
+    puts "Renaming file #{all_files.first}"
+    File.rename(all_files.first, zip_name)
+  end
+
+  def file_is_zipped
+    File.extname(all_files.first) == '.zip'
   end
 end
 
@@ -67,7 +84,7 @@ dall = DownloadFiles.new(params[:files], [])
 dall.all
 
 zipped = ZipFile.new(params[:zip_name], dall.all_filenames)
-zipped.zip
+zipped.perform
 
 upload = UploadFile.new(params[:bucket_name], params[:bucket_dir], zipped.zip_name)
 upload.perform
