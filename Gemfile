@@ -12,3 +12,6 @@ gem 'twilio-ruby', '~> 3.11.5'
 
 # spreadsheet_exporter
 gem 'google_drive'
+
+# mandrill_mailer
+gem 'mandrill-api'

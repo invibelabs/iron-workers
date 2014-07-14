@@ -1,0 +1,5 @@
+runtime "ruby"
+gem 'mandrill-api'
+exec "mandrill_mailer.rb"
+name "MandrillMailer"
+remote
