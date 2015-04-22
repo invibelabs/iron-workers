@@ -1,0 +1,6 @@
+runtime "ruby"
+stack "ruby-2.1"
+gem 'aws-sdk'
+exec 'file_uploader.rb'
+name 'FileUploader'
+remote
