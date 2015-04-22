@@ -1,0 +1,4 @@
+runtime "ruby"
+stack "ruby-2.1"
+exec 'clearbit_reporter.rb'
+name 'ClearbitReporter'
